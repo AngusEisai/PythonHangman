@@ -1,17 +1,58 @@
 import time
 import numpy as np
+print("""
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/     
+""")
 
+dead = '''
+ ___________.._______
+| .__________))______|
+| | / /      ||
+| |/ /       ||
+| | /        ||.-''.
+| |/         |/  _  |
+| |          ||  `/,|
+| |          (\\`_.'
+| |         .-`--'.
+| |        /Y . . Y|
+| |       // |   | \\
+| |      //  | . |  \\
+| |     ')   |   |   (`
+| |          ||'||
+| |          || ||
+| |          || ||
+| |          || ||
+| |         / | | |
+""""""""""|_`-' `-' |"""|
+|"|"""""""\ \       '"|"|
+| |        \ \        | |
+: :         \ \       : : 
+. .          `'       . .
+'''
 play = "y"
-
-print("Welcome To Hangman")
+numbers = [0.1, 0.2, 0.3]
+text = "Welcome To Hangman!\n"
+for l in text:
+    print(l, end="")
+    time.sleep(np.random.choice(numbers))
 time.sleep(3)
 player = input("Who is playing? please type your name:\n")
 
-checks = "sam samuel samwise".split(" ")
+checks = "sam samuel samwise sammy westbrook sammich, Psalm, salmon".split(" ")
 
 if player.lower() in checks:
     time.sleep(1)
-    print(f"Sorry {player}. I am instructed not to play with you")
+    text = f"Sorry {player}. I am instructed not to play with you.\n\n Please leave.\n\n"
+    for l in text:
+        print(l, end="")
+        time.sleep(np.random.choice(numbers))
 else:
     time.sleep(1)
     print(f"Nice to meet you {player}, lets play!")
@@ -33,7 +74,7 @@ else:
         lives = 5
         your_guesses = []
 
-        things = ["wizard", "psychic", "magician", "technologist", "'associate of Angus'", "God", "Spaceman", "hangman-specialist", "Saddo"]
+        things = ["you must be some sort of wizard", "are you psychic", "I bet you are a magician", "I can see why you are a technologist", "this is what I expected of an associate of Angus", "you are genuinely greater than a God", "you could be a Spacewoman!", "Woah! am I playing with a hangman-specialist?", "thats actually kinda sad"]
 
         while "_" in user_word and lives > 0:
             print(f"You have {lives} lives\n")
@@ -47,7 +88,7 @@ else:
                 print("you already guessed that letter")
                 time.sleep(2)
             elif user_guess.lower() in game_word:
-                print(f"Nice! that letter is in the word - you must be some sort of {np.random.choice(things)}?")
+                print(f"Nice! '{user_guess}' is in the word - {np.random.choice(things)}")
                 time.sleep(2)
                 locs = [index for index, letter in enumerate(list(game_word)) if user_guess == letter]
                 for loc in locs: 
@@ -61,6 +102,7 @@ else:
         if "_" not in user_word:
             print("Nice one, you won!\nYou are so cool.")
         elif lives == 0:
+            print(dead)
             time.sleep(2)
             print("wtf, that was terrible, Sam, is that you?")
             time.sleep(3)
